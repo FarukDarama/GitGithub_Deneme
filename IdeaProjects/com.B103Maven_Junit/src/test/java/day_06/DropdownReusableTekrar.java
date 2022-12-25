@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 import java.util.List;
 
-public class C02_DropdownReusable {
+public class DropdownReusableTekrar {
 
     WebDriver driver;
     @Before
@@ -20,27 +20,31 @@ public class C02_DropdownReusable {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
-        driver.get("https://testcenter.techproeducation.com/index.php?page=dropdown");
+        driver.get("https://www.edding.com/tr-tr/fikirler/colouring-pages-and-templates/boyama-sayfalari/#filter=*;layout=muddled");
     }
 
-    //REUSABLE METHODLAR():Dropdown icin tekrar tekrar kullanabilecgimiz bir method olusturalım
-    public void selectFromDropdown(WebElement dropdown,String text){
-
-      //Gonderilen dropdown elementinin tup optionlarını alırız
-      List<WebElement> options = dropdown.findElements(By.tagName("option"));//tum option tagli elementleri alıyorum
-      for (WebElement w: options){
-          if(w.getText().equals(text)){
+    public void  selectFromDropdown(WebElement dropdown,String secenek){
+      List<WebElement> options=  dropdown.findElements(By.tagName("option"));
+      for (WebElement w :options){
+          if(w.getText().equals(secenek)){
               w.click();
               break;
           }
       }
 
-
-
     }
+
     @Test
     public void selectFromDropdown(){
-        selectFromDropdown(driver.findElement(By.xpath("//select[@id='year']")), "2005");//2005 i secti
+        selectFromDropdown(driver.findElement(By.xpath("//*[@class='custom-select filter']")),"124");
+
+
+
     }
+
+
+
+
+
 
 }
